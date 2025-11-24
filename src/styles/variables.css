@@ -1,6 +1,16 @@
 :root{
-    /*colors*/
-   --header-color:rgb(72, 39, 202)
+ 
+  /* Renkler */
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --success-color: #4cc9f0;
+  --danger-color: #f72585;
+  --warning-color: #f8961e;
+  --light-bg: #f8f9fa;
+  --dark-bg: #212529;
+  --light-text: #f8f9fa;
+  --dark-text: #212529;
+  --border-color: #dee2e6;
    
 }
 

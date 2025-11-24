@@ -1,0 +1,9 @@
+@import "./reset.css";
+@import "./variables.css";
+
+
+
+
+body {
+    color: var(--dark-text)
+}
