@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom"
 import styles from "./Header.module.css"
 import { FaSun, FaMoon, FaGlobe } from "react-icons/fa";
-import { useTheme } from "../../contexts/ThemeContext";
-import { useLanguage } from "../../contexts/LanguageContext";
-import translations from "../../utils/translations"; 
+import { useTheme } from "../../../../contexts/ThemeContext";
+import { useLanguage } from "../../../../contexts/LanguageContext";
+import translations from "../../../../utils/translations";
 
 const Header = () => {
 
@@ -24,11 +24,11 @@ const Header = () => {
             <div className={styles.container}>
                 <nav className={styles.nav}>
                     {navLinks.map((link) => {
-                       return ( <NavLink
+                        return (<NavLink
                             key={link.path}
                             to={link.path}
                             className={({ isActive }) => {
-                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                                return isActive ? `${styles.link} ${styles.active}` : styles.link
                             }}
                         >
                             {link.label}
@@ -38,10 +38,10 @@ const Header = () => {
                 </nav>
 
                 <div className={styles.controllers}>
-                    <button onClick={toggleTheme}>
+                    <button className={styles.controlButton} onClick={toggleTheme}>
                         {theme === "light" ? <FaMoon /> : <FaSun />}
                     </button>
-                    <button onClick={toggleLanguage}>
+                    <button className={styles.controlButton} onClick={toggleLanguage}>
                         <FaGlobe />
                         <span>{language === "TR" ? "EN" : "TR"}</span>
                     </button>

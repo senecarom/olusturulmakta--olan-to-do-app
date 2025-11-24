@@ -5,5 +5,10 @@
 
 
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--dark-text)
+}
+
+.pageContainer{
+    max-width: 1200px;
 }

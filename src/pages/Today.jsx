@@ -1,11 +1,22 @@
 
 
 
-const Today = ()=>{
+const Today = () => {
 
-    return(
- <>
- </>       
+    return (
+        <div className="pageContainer">
+            <PageTitle />
+
+            <div className="columnsContainer">
+                <Column />
+                <Column />
+            </div>
+
+            <FloatingButton />
+
+            <AddTaskModal />
+            <EditTaskModal />
+        </div>
     )
 }
 
