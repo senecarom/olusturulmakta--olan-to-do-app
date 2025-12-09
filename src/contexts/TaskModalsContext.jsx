@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 
-const TaskModals = createContext("")
+const TaskModalsContext = createContext("")
 
 export const TaskModalProvider = ({ children }) => {
 
@@ -13,17 +13,17 @@ export const TaskModalProvider = ({ children }) => {
         setIsAddTaskModalOpen(false)
     }
 
-
-    <TaskModal.Provider value={{
-        isAddTaskModalOpen,
-        openAddModal,
-        closeAddModal
-    }}>
-        {children}
-    </TaskModal.Provider>
-
+    return (
+        <TaskModalsContext.Provider value={{
+            isAddTaskModalOpen,
+            openAddModal,
+            closeAddModal
+        }}>
+            {children}
+        </TaskModalsContext.Provider>
+    )
 
 }
 
 
-export const useTaskModal = () => { return useContext(TaskModals) }
+export const useTaskModals = () => { return useContext(TaskModalsContext) }

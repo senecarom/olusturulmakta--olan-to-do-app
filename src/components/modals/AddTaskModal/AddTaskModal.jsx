@@ -6,7 +6,7 @@ import { FaTimes } from "react-icons/fa";
 
 
 
-const AddTaskModal = ({isAddTaskModalOpen}) => {
+const AddTaskModal = ({ isAddTaskModalOpen, onClose }) => {
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -33,6 +33,7 @@ const AddTaskModal = ({isAddTaskModalOpen}) => {
         )
         setTitle("")
         setDescription("")
+        onclose()
     }
 
     if (!isAddTaskModalOpen) {
@@ -43,7 +44,7 @@ const AddTaskModal = ({isAddTaskModalOpen}) => {
         <div className="modalOverlay">
             <div className="add-task-modal">
 
-                <button className="close">
+                <button className="close" onClick={onClose}>
                     <FaTimes />
                 </button>
 
@@ -79,7 +80,7 @@ const AddTaskModal = ({isAddTaskModalOpen}) => {
                     </div>
 
                     <div className="button-group">
-                        <button>{t.cancel}</button>
+                        <button onClick={onClose}>{t.cancel}</button>
                         <button>{t.save}</button>
                     </div>
                 </form>

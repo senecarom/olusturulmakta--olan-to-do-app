@@ -7,7 +7,7 @@ import ThisMonth from "../pages/ThisMonth"
 import { ThemeProvider } from "../contexts/ThemeContext"
 import { LanguageProvider } from "../contexts/LanguageContext"
 import { TasksDataProvider } from "../contexts/TasksDataContext"
-import { TaskModalProvider } from "../contexts/TaskModals"
+import { TaskModalProvider } from "../contexts/TaskModalsContext"
 
 const AppRouter = () => {
 
