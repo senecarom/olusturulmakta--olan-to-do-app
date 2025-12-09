@@ -1,62 +1,88 @@
+import { useState } from "react"
 import { useLanguage } from "../../../contexts/LanguageContext"
-import { dispatch } from "../../../contexts/TasksDataContext"
+import { useTasksData } from "../../../contexts/TasksDataContext"
+import translations from "../../../utils/translations"
+import { FaTimes } from "react-icons/fa";
 
 
 
-const AddTaskModal = () => {
+const AddTaskModal = ({isAddTaskModalOpen}) => {
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
+    const { dispatch } = useTasksData()
     const { language } = useLanguage()
     const t = translations[language]
 
 
-    const addTaskData = () => {
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+        if (!title.trim() && !description.trim()) {
+            setTitle("")
+            setDescription("")
+            return
+        }
+
         dispatch(
             {
                 type: "ADD_TASK_DATA",
-                payload: { title: {title} , description: {description} }
+                payload: { title: title, description: description }
             }
         )
+        setTitle("")
+        setDescription("")
+    }
+
+    if (!isAddTaskModalOpen) {
+        return
     }
 
     return (
-        <div className="add-Task-Column">
+        <div className="modalOverlay">
+            <div className="add-task-modal">
 
-            <div className="title">
-                {t.addTaskModalTitle}
-            </div>
+                <button className="close">
+                    <FaTimes />
+                </button>
 
-            <div className="form-group">
-                <label htmlFor="taskTitle">
-                    {t.addTaskModalTaskTitle}
-                </label>
-                <input
-                    placeholder={t.addTaskModalTaskTitlePlaceholder}
-                    id="taskTitle"
-                    value={title}
-                    onchange={(e) => { setTitle(e.target.value) }}
-                />
-            </div>
+                <h2 className="title">
+                    {t.addTaskModalTitle}
+                </h2>
 
-            <div className="form-group">
-                <label htmlFor="taskDescription">
-                    {t.addTaskModalTaskDescription}
-                </label>
-                <textarea
-                    id="taskDescription"
-                    type="text"
-                    placeholder={t.addTaskModalTaskDescriptionPlaceholder}
-                    value={description}
-                    onChange={(e)=>{setDescription(e.target.value)}}
-                >
-                </textarea>
-            </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="taskTitle">
+                            {t.addTaskModalTaskTitle}
+                        </label>
+                        <input
+                            placeholder={t.addTaskModalTaskTitlePlaceholder}
+                            id="taskTitle"
+                            value={title}
+                            onChange={(e) => { setTitle(e.target.value) }}
+                        />
+                    </div>
 
-            <div className="button-group">
-                <button>{t.cancel}</button>
-                <button onClick={addTaskData}>{t.save}</button>
+                    <div className="form-group">
+                        <label htmlFor="taskDescription">
+                            {t.addTaskModalTaskDescription}
+                        </label>
+                        <textarea
+                            id="taskDescription"
+                            type="text"
+                            placeholder={t.addTaskModalTaskDescriptionPlaceholder}
+                            value={description}
+                            onChange={(e) => { setDescription(e.target.value) }}
+                        >
+                        </textarea>
+                    </div>
+
+                    <div className="button-group">
+                        <button>{t.cancel}</button>
+                        <button>{t.save}</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

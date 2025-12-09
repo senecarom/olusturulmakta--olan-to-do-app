@@ -1,11 +1,11 @@
 import { FaPlus } from "react-icons/fa";
 import styles from "./FloatingButton.module.css"
 
-const FloatingButton = ({openModal})=>{
+const FloatingButton = ({onAddModalOpen})=>{
 
-
+    
     return(
-        <button className={styles.floatingButton} onClick={openModal}>
+        <button className={styles.floatingButton} onClick={onAddModalOpen}>
             <FaPlus />
         </button>
     )

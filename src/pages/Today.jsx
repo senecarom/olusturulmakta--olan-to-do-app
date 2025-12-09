@@ -2,9 +2,14 @@ import PageTitle from "../components/PageTitle/PageTitle"
 import TaskColumn from "../components/TaskColumn/TaskColumn"
 import FloatingButton from "../components/ui/FloatingButton/FloatingButton"
 import AddTaskModal from "../components/modals/AddTaskModal/AddTaskModal"
+import { useTaskModals } from "../contexts/TaskModals"
 
 const Today = () => {
 
+    const {
+        openAddModal,
+        isAddTaskModalOpen
+    } = useTaskModals()
     return (
         <div className="page-container">
             <PageTitle />
@@ -18,9 +23,11 @@ const Today = () => {
                 />
             </div>
 
-            <FloatingButton />
+            <FloatingButton onAddModalOpen={openAddModal} />
 
-            {/* <AddTaskModal /> */}
+            <AddTaskModal
+                isAddTaskModalOpen={isAddTaskModalOpen}
+            />
             {/* <EditTaskModal /> */}
         </div>
     )
